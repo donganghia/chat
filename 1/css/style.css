@@ -1,0 +1,68 @@
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+	/*#selfvid { width:90px; }*/
+	/* #selfvid { width:2950%; } */
+}
+/* Smartphones (landscape) ----------- */
+@media only screen
+and (max-width : 480px) {
+	/*#selfvid { width:90px; }*/
+	/* #selfvid { width:2950%; } */
+
+}
+/* Smartphones (portrait) ----------- */
+@media only screen
+and (max-width : 320px) {
+	/*#selfvid { width:90px; }*/
+	/* #selfvid { width:2950%; } */
+}
+/* iPads (portrait and landscape) ----------- */
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px) {
+	/* #selfvid { width:2950%; } */
+}
+/* iPads (landscape) ----------- */
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px)
+and (orientation : landscape) {
+	/* #selfvid { width:2950%; } */
+}
+/* iPads (portrait) ----------- */
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px)
+and (orientation : portrait) {
+	/* #selfvid { width:2950%; } */
+}
+/* Desktops and laptops ----------- */
+@media only screen
+and (min-width : 1224px) {
+	/* #selfvid { width:2950%; } */
+}
+/* Large screens ----------- */
+@media only screen
+and (min-width : 1824px) {
+	/* #selfvid { width:2950%; } */
+}
+/* iPhone 4 ----------- */
+@media
+only screen and (-webkit-min-device-pixel-ratio : 1.5), only screen and (min-device-pixel-ratio : 1.5) {
+	/* #selfvid { width:2950%; } */
+}
+
+body { margin:1px; padding:1px; }
+.vt { display:inline-block;  width:10px; word-wrap:break-word; vertical-align:middle; text-align:center; }
+#clist .member { border-top:1px solid #cccccc; background:#eeeeee; }
+#clist { background:#efefef; }
+#rlist .member { border-top:1px solid #cccccc; background:#e0e0e0; }
+#glist .group { border-top:1px solid #a0a0a0; background:#cfcfcf; }
+#grlist .group { border-top:1px solid #a0a0a0; background:#c0c0c0; }
+#slist .member { background:#efefef; border-top:#1px solid #d0d0d0; }
+#search_box { background:#eeeeee; }
+.pointer { cursor:pointer; }
+.tab-active { font-weight:bold; }
+.hidden { display:none; }
+.invisible { visibility:hidden; }
