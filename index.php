@@ -3,7 +3,7 @@
 
   <meta charset="utf-8">
   <base target="_blank">
-  <title>Transfer File</title>
+  <title>Chat & Sharing File</title>
   <link rel="stylesheet" href="style.css" />
 
 </head>
