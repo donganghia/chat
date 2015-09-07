@@ -28,8 +28,9 @@
                     <progress id="receiveProgress" max="0" value="0"></progress>
                   </div>
                   <div id="bitrate"></div>
-
+                  <div id="attachment">
                   <a id="received"></a>
+                  </div>
                 </section>
             
             <output id="list"></output>
@@ -44,13 +45,9 @@
 <script type="text/javascript" src="jquery.min.js"></script>
   <script src="adapter.js"></script>
   <script src="main.js"></script>
-  <!--<script src="ga.js"></script>-->
-
   
-  <?php 
-    $colours = array('007AFF','FF7000','FF7000','15E25F','CFC700','CFC700','CF1100','CF00BE','F00');
-    $user_colour = array_rand($colours);
-?>
+   <script src="peer.js"></script>
+  <script src="widget.js"></script>
     <script>
         
 $(document).ready(function(){
@@ -62,6 +59,11 @@ $(document).ready(function(){
         $('#message_box').append("<div class=\"system_msg\">Connected!</div>"); //notify user
     }
     
+
+    $('#message_box').on('drop', function(ev) { //use when sharing file
+
+     });
+     
      $('#fileInput').change(function(){ //use when sharing file
          createConnection();
          var msg = {message :$('#received').html(),color: 1}
@@ -84,7 +86,7 @@ $(document).ready(function(){
         var msg = {
         message: mymessage,
         name: myname,
-        color : '<?php echo $colours[$user_colour]; ?>'
+        color : 'FF7000'
         };
         //convert and send data to server
         websocket.send(JSON.stringify(msg));
@@ -94,7 +96,6 @@ $(document).ready(function(){
     websocket.onmessage = function(ev) {
         var msg = JSON.parse(ev.data); //PHP sends Json data
         var type = msg.type; //message type
-       
         var umsg = msg.message; //message text
         var uname = msg.name; //user name
         var ucolor = msg.color; //color
@@ -102,8 +103,7 @@ $(document).ready(function(){
         if(type == 'usermsg') 
         {
             if(1 == ucolor) {
-                $('#message_box').append("<div>"+umsg+"</div>");
-                console.log(umsg);
+                $('#message_box').append(umsg);
             } else {    
                 $('#message_box').append("<div><span class=\"user_name\" style=\"color:#"+ucolor+"\">"+uname+"</span> : <span class=\"user_message\">"+umsg+"</span></div>");
             }
@@ -154,5 +154,9 @@ $(document).ready(function(){
       dropZone.addEventListener('dragover', handleDragOver, false);
       dropZone.addEventListener('drop', handleFileSelect, false);
     </script>
+    
+    
+    
+    <a download="IMG_0361.JPG" href="blob:http://192.168.100.29:8080/6b570d21-5e40-475c-a937-4b5addfcb1ef" target="_blank">Click to xxxxx 'IMG_0361.JPG' (52217 bytes)</a>
 </body>
 </html>

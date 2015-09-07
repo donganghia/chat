@@ -1,5 +1,5 @@
 <?php
-$host = '192.168.1.42'; //host
+$host = '192.168.100.29'; //host
 $port = '9000'; //port
 $null = NULL; //null var
 
@@ -144,7 +144,7 @@ function perform_handshaking($receved_header,$client_conn, $host, $port)
 	"Upgrade: websocket\r\n" .
 	"Connection: Upgrade\r\n" .
 	"WebSocket-Origin: $host\r\n" .
-	"WebSocket-Location: ws://$host:$port/test/websocket_php/server.php\r\n".
+	"WebSocket-Location: ws://$host:$port/server.php\r\n".
 	"Sec-WebSocket-Accept:$secAccept\r\n\r\n";
 	socket_write($client_conn,$upgrade,strlen($upgrade));
 }

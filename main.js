@@ -172,6 +172,7 @@ function onReceiveMessageCallback(event) {
   // about the expected file size (and name, hash, etc).
   var file = fileInput.files[0];
   if (receivedSize === file.size) {
+                    
     var received = new window.Blob(receiveBuffer);
     receiveBuffer = [];
 
@@ -196,15 +197,15 @@ function onReceiveMessageCallback(event) {
 
     // re-enable the file select
     fileInput.disabled = false;
-    
     var msg = {
-        message: '<a href="'+ URL.createObjectURL(received)+'" download = "'+ file.name+'" >'+text+ '</a>',
+        message: "<a target='_blank'  href='"+ window.URL.createObjectURL(received)+"' download='"+file.name+"'>"+text+ "</a>",
         color : 1
     };
     
      websocket.send(JSON.stringify(msg));
   }
 }
+
 
 function onSendChannelStateChange() {
   var readyState = sendChannel.readyState;
@@ -276,4 +277,35 @@ function displayStats() {
       }
     }
   }
+  
+    
 }
+
+function createConnection2() {
+        var servers = null;
+        pcConstraint = null;
+
+        // Add localConnection to global scope to make it visible from the browser console.
+        window.localConnection = localConnection = new RTCPeerConnection(servers,
+            pcConstraint);
+        trace('Created local peer connection object localConnection');
+
+        sendChannel = localConnection.createDataChannel('sendDataChannel');
+        sendChannel.binaryType = 'arraybuffer';
+        trace('Created send data channel');
+
+        sendChannel.onopen = onSendChannelStateChange;
+        sendChannel.onclose = onSendChannelStateChange;
+        localConnection.onicecandidate = iceCallback1;
+
+        localConnection.createOffer(gotDescription1, onCreateSessionDescriptionError);
+        // Add remoteConnection to global scope to make it visible from the browser console.
+        window.remoteConnection = remoteConnection = new RTCPeerConnection(servers,
+            pcConstraint);
+        trace('Created remote peer connection object remoteConnection');
+
+        remoteConnection.onicecandidate = iceCallback2;
+        remoteConnection.ondatachannel = receiveChannelCallback;
+
+        fileInput.disabled = true;
+  }
